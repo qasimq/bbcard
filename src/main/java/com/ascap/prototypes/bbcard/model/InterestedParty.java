@@ -1,9 +1,14 @@
 package com.ascap.prototypes.bbcard.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -11,17 +16,20 @@ import javax.persistence.OneToOne;
 public class InterestedParty {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	private long partyId;
 	private String name;
 	private String email;
 	private String phone;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PartyManager manager;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private PartyAdvance advance;
-	@OneToMany
-	private List<PartyEarn> earns;
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "party_id")
+	private List<PartyEarn> earns = new ArrayList<PartyEarn>();
 
 	public PartyAdvance getAdvance() {
 		return advance;
@@ -77,6 +85,14 @@ public class InterestedParty {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public long getPartyId() {
+		return partyId;
+	}
+
+	public void setPartyId(long partyId) {
+		this.partyId = partyId;
 	}
 
 }

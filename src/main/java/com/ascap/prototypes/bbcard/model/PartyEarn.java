@@ -1,18 +1,19 @@
 package com.ascap.prototypes.bbcard.model;
 
-import java.util.Currency;
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class PartyEarn {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String distQuarter;
-	private Currency grossAmount;
-	private Currency netAmount;
+	private float grossAmount;
+	private float netAmount;
 
 	public long getId() {
 		return id;
@@ -30,19 +31,19 @@ public class PartyEarn {
 		this.distQuarter = distQuarter;
 	}
 
-	public Currency getGrossAmount() {
+	public float getGrossAmount() {
 		return grossAmount;
 	}
 
-	public void setGrossAmount(Currency grossAmount) {
+	public void setGrossAmount(float grossAmount) {
 		this.grossAmount = grossAmount;
 	}
 
-	public Currency getNetAmount() {
+	public float getNetAmount() {
 		return netAmount;
 	}
 
-	public void setNetAmount(Currency netAmount) {
+	public void setNetAmount(float netAmount) {
 		this.netAmount = netAmount;
 	}
 

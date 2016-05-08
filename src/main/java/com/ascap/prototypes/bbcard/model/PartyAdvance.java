@@ -1,18 +1,20 @@
 package com.ascap.prototypes.bbcard.model;
 
-import java.util.Currency;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class PartyAdvance {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private Currency amount;
+	private float amount;
 	private Date advanceDate;
 
 	public long getId() {
@@ -23,11 +25,11 @@ public class PartyAdvance {
 		this.id = id;
 	}
 
-	public Currency getAmount() {
+	public float getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Currency amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 
